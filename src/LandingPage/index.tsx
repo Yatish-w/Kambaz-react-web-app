@@ -8,7 +8,7 @@ export default function LandingPage() {
             <h2>Links</h2>
             <ul>
                 <li><Link to={"/Labs"}>Labs</Link></li>
-                <li><Link to={"/Kanbas"}>Kanbas</Link></li>
+                <li><Link to={"/Kambaz"}>Kambaz</Link></li>
                 <li><Link to={"https://github.com/Yatish-w/Kambaz-react-web-app.git"}>Github repo</Link></li>
             </ul>
         </div>
