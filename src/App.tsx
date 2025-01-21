@@ -3,6 +3,7 @@
 //import './App.css';
 import Labs from './Labs';
 
+import LandingPage from './LandingPage';
 import { HashRouter, Route, Routes, Navigate } from 'react-router-dom';
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
           <Route path="/" element={<Navigate to="LandingPage"/>}/>
           <Route path='/Labs/*' element={<Labs/>} />
           
+          <Route path='/LandingPage' element={<LandingPage/>} />
         </Routes>
       </div>
     </HashRouter>
