@@ -1,10 +1,22 @@
+import React from 'react';
+//import logo from './logo.svg';
+//import './App.css';
+import Labs from './Labs';
 
+import { HashRouter, Route, Routes, Navigate } from 'react-router-dom';
 
 function App() {
- 
-
-  return <h1>Welcome to Web Dev</h1>
-    
+  return (
+    <HashRouter>
+      <div>
+        <Routes>
+          <Route path="/" element={<Navigate to="LandingPage"/>}/>
+          <Route path='/Labs/*' element={<Labs/>} />
+          
+        </Routes>
+      </div>
+    </HashRouter>
+  );
 }
 
-export default App
+export default App;
