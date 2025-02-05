@@ -9,7 +9,7 @@ export default function LandingPage() {
             <h3>Links</h3>
             <ul className="list-group">
                 <li className="list-group-item"><Link to={"/Labs"}>Labs</Link></li>
-                <li className="list-group-item"><Link to={"/Kambaz"}>Kanbas</Link></li>
+                <li className="list-group-item"><Link to={"/Kambaz"}>Kambaz</Link></li>
                 <li className="list-group-item"><Link to={"https://github.com/Yatish-w/Kambaz-react-web-app.git"}>Github repo</Link></li>
             </ul>
             </div>
