@@ -1,3 +1,5 @@
+import { Button, Card } from "react-bootstrap";
+
 export default function BootstrapNavigation() {
     return (
         <div>
@@ -20,26 +22,21 @@ export default function BootstrapNavigation() {
             </div>
 
             <div id="wd-css-navigating-with-cards">
-                <h2>
-                    Cards
-                </h2>
-                <div className="card"
-                    style={{ width: "18rem" }}>
-                    <img src="images/starship.jpg"
-                        className="card-img-top" />
-                    <div className="card-body">
-                        <h5 className="card-title">
-                            Stacking Starship
-                        </h5>
-                        <p className="card-text">
-                            Stacking the most powerful rocket in history. Mars or bust!
-                        </p>
-                        <a href="#" className="btn btn-primary">
-                            Boldly Go
-                        </a>
-                    </div>
-                </div>
-            </div>
+  <h2>
+    Cards
+  </h2>
+  <Card style={{ width: "18rem" }}>
+    <Card.Img variant="top" src="images/starship.jpg" />
+    <Card.Body>
+      <Card.Title>Stacking Starship</Card.Title>
+      <Card.Text>
+        Stacking the most powerful rocket in history. Mars or bust!
+      </Card.Text>
+      <Button variant="primary">Boldly Go</Button>
+    </Card.Body>
+  </Card>
+</div>
+
         </div>
     );
 }
