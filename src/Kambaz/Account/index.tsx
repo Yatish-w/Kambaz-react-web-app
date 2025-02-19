@@ -6,7 +6,7 @@ import AccountNavigation from "./Navigation";
 export default function Account() {
   return (
     <div id="wd-account-screen">
-      <h1 className="text-danger">Account</h1>
+      <h1 className="text-danger">Account</h1><hr />
       <div className="d-flex">
         <div className="d-none d-md-block">
           <AccountNavigation />

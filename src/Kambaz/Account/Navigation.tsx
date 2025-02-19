@@ -1,13 +1,15 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 export default function AccountNavigation() {
+    const { pathname } = useLocation();
+    const links = ["Signin", "Signup", "Profile"];
     return (
         <div id="wd-account-navigation" className="wd list-group fs-5 rounded-0">
-            <Link to={`/Kambaz/Account/Signin`}  
-            className="list-group-item active border border-0"> Signin  </Link>
-            <Link to={`/Kambaz/Account/Signup`}  
-            className="list-group-item text-danger border border-0"> Signup  </Link>
-            <Link to={`/Kambaz/Account/Profile`} 
-            className="list-group-item text-danger border border-0"> Profile </Link>
+            {links.map((link) => (
+                <Link to={`./${link}`}
+                    className={`list-group-item border border-0 ${pathname.includes(link) ? "active" : "text-danger"}`}>
+                    {link}
+                </Link>
+            ))}
         </div>
     );
 }  
