@@ -13,7 +13,7 @@ export default function LandingPage() {
                 <Link className="text-black link-underline link-underline-opacity-0" to={"/Labs"}>
                     <button className="btn btn-lg btn-info me-2"><FaFlask />Labs</button>
                 </Link>
-                <Link to={"/Kanbas"}>
+                <Link to={"/Kambaz"}>
                     <button className="btn btn-lg btn-info me-2"><FaBook />Kambaz</button>
                 </Link>
                 <Link to={"https://github.com/Yatish-w/Kambaz-react-web-app.git"}>
