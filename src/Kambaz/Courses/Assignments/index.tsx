@@ -6,7 +6,7 @@ import DescControlButtons from "./DescControlButtons";
 import AssignmentControls from "./AssignmentControls";
 import { useParams } from "react-router";
 import * as db from "../../Database";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 export default function Assignments() {
   const { cid } = useParams();
   const assignments = db.assignments;

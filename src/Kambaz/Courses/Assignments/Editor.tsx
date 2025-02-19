@@ -1,5 +1,5 @@
 import { useParams } from "react-router";
-import { Link, useLocation } from "react-router-dom";
+import { Link, } from "react-router-dom";
 import * as db from "../../Database";
 export default function AssignmentEditor() {
   const { aid } = useParams();
