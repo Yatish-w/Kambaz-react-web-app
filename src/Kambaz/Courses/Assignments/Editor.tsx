@@ -1,9 +1,9 @@
 import { useParams, useNavigate } from "react-router";
-import { Link, useLocation } from "react-router-dom";
-import * as db from "../../Database";
+import { Link} from "react-router-dom";
+//import * as db from "../../Database";
 import { addAssignment, updateAssignment, setAssignment } from "./reducer";
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
+//import { useState } from "react";
 
 export default function AssignmentEditor() {
   const { aid } = useParams();

@@ -19,7 +19,7 @@ export default function Kambaz() {
   });
 
   const { currentUser } = useSelector((state: any) => state.accountReducer);
-  const {enrollments} = useSelector((state: any) => state.enrollmentReducer);
+  //const {enrollments} = useSelector((state: any) => state.enrollmentReducer);
   const dispatch = useDispatch();
 
   const addNewCourse = () => {

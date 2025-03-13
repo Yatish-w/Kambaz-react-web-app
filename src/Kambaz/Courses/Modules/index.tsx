@@ -2,11 +2,11 @@ import ModulesControls from "./ModulesControls";
 import "../../styles.css";
 import LessonControlButtons from "./LessonControlButtons";
 import { BsGripVertical } from "react-icons/bs";
-import { GrLink } from "react-icons/gr";
-import { FiExternalLink } from "react-icons/fi";
+//import { GrLink } from "react-icons/gr";
+//import { FiExternalLink } from "react-icons/fi";
 import ModuleControlButtons from "./ModuleControlButtons";
 import { useParams } from "react-router";
-import * as db from "../../Database";
+//import * as db from "../../Database";
 import React, { useState } from "react";
 import { addModule, editModule, updateModule, deleteModule }
   from "./reducer";

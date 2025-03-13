@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import * as db from "./Database";
+//import * as db from "./Database";
 import { addEnrollment, deleteEnrollment } from "./Courses/People/reducer";
 export default function Dashboard(
   { courses, course, setCourse, addNewCourse,
