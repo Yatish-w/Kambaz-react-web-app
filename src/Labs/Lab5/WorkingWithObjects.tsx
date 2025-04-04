@@ -43,15 +43,15 @@ export default function WorkingWithObjects() {
                 Update Score
             </a>
             <input type="number" className="form-control w-75" id="wd-assignment-score"
-                defaultValue={assignment.score} onChange={(e) =>
-                    setAssignment({ ...assignment, score: e.target.valueAsNumber })} /><br />
+                defaultValue={assignment.score} onChange={(event) =>
+                    setAssignment({ ...assignment, score: event.target.valueAsNumber })} /><br />
             <a id="wd-assignment-completed"
                 className="btn btn-primary float-end"
                 href={`${ASSIGNMENT_API_URL}/completed/${assignment.completed}`}>
                 Update Completed Status
             </a>
             <input type="checkbox" className="form-check-input" id="wd-assignment-completed"
-                onChange={(e) =>
+                onChange={(event) =>
                     setAssignment({ ...assignment, completed: !(assignment.completed) })} />
             <label htmlFor="wd-assignment-completed" className="form-check-label ms-4">{assignment.completed ? "True" : "False"}</label>
             <br/><br/><hr />
@@ -73,16 +73,16 @@ export default function WorkingWithObjects() {
                 Update Name
             </a>
             <input className="form-control w-75" id="wd-module-name"
-                defaultValue={module.name} onChange={(e) =>
-                    setModule({ ...module, name: e.target.value })} /><br />
+                defaultValue={module.name} onChange={(event) =>
+                    setModule({ ...module, name: event.target.value })} /><br />
             <a id="wd-update-module-desc"
                 className="btn btn-primary float-end"
                 href={`${MODULE_API_URL}/description/${module.description}`}>
                 Update Description
             </a>
             <input className="form-control w-75" id="wd-module-desc"
-                defaultValue={module.description} onChange={(e) =>
-                    setModule({ ...module, description: e.target.value })} />
+                defaultValue={module.description} onChange={(event) =>
+                    setModule({ ...module, description: event.target.value })} />
             <hr />
         </div>
     );

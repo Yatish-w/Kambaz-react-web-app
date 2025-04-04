@@ -45,7 +45,7 @@ export default function WorkingWithArrays() {
                 <input defaultValue={todo.id} className="form-control w-25 float-start me-2"
                     onChange={(event) => setTodo({ ...todo, id: event.target.value })} />
                 <input defaultValue={todo.title} className="form-control w-50 float-start"
-                    onChange={(e) => setTodo({ ...todo, title: e.target.value })} />
+                    onChange={(event) => setTodo({ ...todo, title: event.target.value })} />
             </div><br/>
 
             <div>
@@ -54,7 +54,7 @@ export default function WorkingWithArrays() {
                 <input defaultValue={todo.id} className="form-control w-25 float-start me-2"
                     onChange={(event) => setTodo({ ...todo, id: event.target.value })} />
                 <input defaultValue={todo.description} className="form-control w-50 float-start"
-                    onChange={(e) => setTodo({ ...todo, description: e.target.value })} />
+                    onChange={(event) => setTodo({ ...todo, description: event.target.value })} />
             </div><br/>
 
             <div>
@@ -66,7 +66,7 @@ export default function WorkingWithArrays() {
                 <input defaultValue={todo.id} className="form-control w-25 float-start me-2"
                     onChange={(event) => setTodo({ ...todo, id: event.target.value })} />
                 <input type="checkbox" className="form-check-input float-start" id="wd-todo-completed"
-                    onChange={(e) =>
+                    onChange={(event) =>
                         setTodo({ ...todo, completed: !(todo.completed) })} />
                 <label htmlFor="wd-todo-completed" className="form-check-label ms-4 float-start">{todo.completed ? "True" : "False"}</label>
             </div>
