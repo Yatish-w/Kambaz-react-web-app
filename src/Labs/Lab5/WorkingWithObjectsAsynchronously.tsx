@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+// import React from "react";
+import { useEffect, useState } from "react";
 import * as client from "./client";
 export default function WorkingWithObjectsAsynchronously() {
     const [assignment, setAssignment] = useState<any>({});
