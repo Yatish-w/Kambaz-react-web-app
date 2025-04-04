@@ -51,8 +51,7 @@ export default function WorkingWithObjects() {
                 Update Completed Status
             </a>
             <input type="checkbox" className="form-check-input" id="wd-assignment-completed"
-                onChange={(event) =>
-                    setAssignment({ ...assignment, completed: !(assignment.completed) })} />
+                onChange={() => setAssignment({ ...assignment, completed: !(assignment.completed) })} />
             <label htmlFor="wd-assignment-completed" className="form-check-label ms-4">{assignment.completed ? "True" : "False"}</label>
             <br/><br/><hr />
 
