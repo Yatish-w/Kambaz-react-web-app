@@ -1,9 +1,10 @@
 import { useParams, useNavigate } from "react-router";
-import { Link} from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 //import * as db from "../../Database";
-import { addAssignment, updateAssignment, setAssignment } from "./reducer";
+import { addAssignment, setAssignment, setAssignments, updateAssignment } from "./reducer";
 import { useDispatch, useSelector } from "react-redux";
-//import { useState } from "react";
+import { useState } from "react";
+import * as assignmentClient from "./client";
 
 export default function AssignmentEditor() {
   const { aid } = useParams();
@@ -12,12 +13,14 @@ export default function AssignmentEditor() {
   const { assignment } = useSelector((state: any) => state.assignmentReducer);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const handleSave = () => {
+  const handleSave = async () => {
     if (aid === "new") {
+      await assignmentClient.createNewAssignment(assignment);
       dispatch(addAssignment({
         ...assignment
       }));
     } else {
+      await assignmentClient.updateAssignment(assignment);
       dispatch(updateAssignment({
         ...assignment
       }));
