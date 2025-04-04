@@ -8,11 +8,11 @@ export default function QueryParameters() {
             <input id="wd-query-parameter-a"
                 className="form-control mb-2"
                 defaultValue="34" type="number"
-                onChange={(e) => {}} />
+                onChange={() => {}} />
             <input id="wd-query-parameter-b"
                 className="form-control mb-2"
                 defaultValue="23" type="number"
-                onChange={(e) => {}} />
+                onChange={() => {}} />
             <a id="wd-query-parameter-add" className="btn btn-primary me-2"
                 href={`${import.meta.env.VITE_REMOTE_SERVER}/lab5/calculator?operation=add&a=34&b=23`}>
                 Add 34 + 23
