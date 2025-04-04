@@ -35,8 +35,8 @@ export default function WorkingWithObjects() {
                 Update Title
             </a>
             <input className="form-control w-75" id="wd-assignment-title"
-                defaultValue={assignment.title} onChange={(e) =>
-                    setAssignment({ ...assignment, title: e.target.value })} /><br />
+                defaultValue={assignment.title} onChange={(event) =>
+                    setAssignment({ ...assignment, title: event.target.value })} /><br />
             <a id="wd-update-assignment-score"
                 className="btn btn-primary float-end"
                 href={`${ASSIGNMENT_API_URL}/score/${assignment.score}`}>

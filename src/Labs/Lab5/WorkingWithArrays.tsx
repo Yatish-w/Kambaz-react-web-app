@@ -21,7 +21,7 @@ export default function WorkingWithArrays() {
                 Get Todo by ID
             </a>
             <input id="wd-todo-id" defaultValue={todo.id} className="form-control w-50"
-                onChange={(e) => setTodo({ ...todo, id: e.target.value })} />
+                onChange={(event) => setTodo({ ...todo, id: event.target.value })} />
             <hr />
             <h3>Filtering Array Items</h3>
             <a id="wd-retrieve-completed-todos" className="btn btn-primary"
@@ -36,14 +36,14 @@ export default function WorkingWithArrays() {
             <h3>Deleting from an Array</h3>
             <a id="wd-retrieve-completed-todos" className="btn btn-primary float-end" href={`${API}/${todo.id}/delete`}>
                 Delete Todo with ID = {todo.id} </a>
-            <input defaultValue={todo.id} className="form-control w-50" onChange={(e) => setTodo({ ...todo, id: e.target.value })} /><hr />
+            <input defaultValue={todo.id} className="form-control w-50" onChange={(event) => setTodo({ ...todo, id: event.target.value })} /><hr />
             <h3>Updating an Item in an Array</h3>
             <div className="d-flex flex-column bd-highlight mb-3">
             <div>
                 <a href={`${API}/${todo.id}/title/${todo.title}`} className="btn btn-primary float-end">
                     Update Todo</a>
                 <input defaultValue={todo.id} className="form-control w-25 float-start me-2"
-                    onChange={(e) => setTodo({ ...todo, id: e.target.value })} />
+                    onChange={(event) => setTodo({ ...todo, id: event.target.value })} />
                 <input defaultValue={todo.title} className="form-control w-50 float-start"
                     onChange={(e) => setTodo({ ...todo, title: e.target.value })} />
             </div><br/>
@@ -52,7 +52,7 @@ export default function WorkingWithArrays() {
                 <a href={`${API}/${todo.id}/description/${todo.description}`} className="btn btn-primary float-end">
                     Update Todo Description</a>
                 <input defaultValue={todo.id} className="form-control w-25 float-start me-2"
-                    onChange={(e) => setTodo({ ...todo, id: e.target.value })} />
+                    onChange={(event) => setTodo({ ...todo, id: event.target.value })} />
                 <input defaultValue={todo.description} className="form-control w-50 float-start"
                     onChange={(e) => setTodo({ ...todo, description: e.target.value })} />
             </div><br/>
@@ -64,7 +64,7 @@ export default function WorkingWithArrays() {
                     Update Completed Status
                 </a>
                 <input defaultValue={todo.id} className="form-control w-25 float-start me-2"
-                    onChange={(e) => setTodo({ ...todo, id: e.target.value })} />
+                    onChange={(event) => setTodo({ ...todo, id: event.target.value })} />
                 <input type="checkbox" className="form-check-input float-start" id="wd-todo-completed"
                     onChange={(e) =>
                         setTodo({ ...todo, completed: !(todo.completed) })} />
