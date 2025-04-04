@@ -4,7 +4,6 @@ import Dashboard from "./Dashboard";
 import KambazNavigation from "./Navigation";
 import Courses from "./Courses";
 import "./styles.css";
-//import * as db from "./Database";
 import { useState, useEffect } from "react";
 import ProtectedRoute from "./Account/ProtectedRoute";
 import { addEnrollment } from "./Courses/People/reducer";
@@ -39,7 +38,6 @@ export default function Kambaz() {
     image: "course.jpg", description: "New Description"
   });
 
-  const { enrollments } = useSelector((state: any) => state.enrollmentReducer);
   const dispatch = useDispatch();
 
   const addNewCourse = async () => {
@@ -49,7 +47,7 @@ export default function Kambaz() {
   };
 
   const deleteCourse = async (courseId: string) => {
-    const status = await courseClient.deleteCourse(courseId);
+    await courseClient.deleteCourse(courseId);
     setCourses(courses.filter((course) => course._id !== courseId));
   };
 

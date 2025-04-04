@@ -1,8 +1,7 @@
-import React from "react";
 import { useParams } from "react-router-dom";
 
 export default function Zoom() {
-  const { cid } = useParams();
+  // Removed unused cid variable
   
   // In a real application, you might fetch this data based on the course ID
   const zoomMeetings = [

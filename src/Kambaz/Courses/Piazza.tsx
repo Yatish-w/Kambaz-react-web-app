@@ -1,8 +1,6 @@
-import React from "react";
 import { useParams } from "react-router-dom";
 
 export default function Piazza() {
-  const { cid } = useParams();
   
   return (
     <div className="p-4">
