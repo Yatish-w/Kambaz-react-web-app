@@ -1,12 +1,6 @@
 import axios from "axios";
-const axiosWithCredentials = axios.create({ 
-    withCredentials: true,
-    headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Credentials': 'true'
-    }
-});
-export const REMOTE_SERVER = import.meta.env.VITE_REMOTE_SERVER || "https://kambaz-node-server-app-y1ij.onrender.com";
+const axiosWithCredentials = axios.create({ withCredentials: true });
+export const REMOTE_SERVER = import.meta.env.VITE_REMOTE_SERVER;
 export const USERS_API = `${REMOTE_SERVER}/api/users`;
 
 export const createCourse = async (course: any) => {
