@@ -35,7 +35,7 @@ export default function Dashboard(
     setShowAllCourses(!showAllCourses);
   };
 
-  const filteredCourses = showAllCourses
+  const filteredCourses = currentUser.role === "FACULTY" || showAllCourses
     ? courses
     : courses.filter((course) =>
       enrollments.some(
@@ -120,7 +120,7 @@ export default function Dashboard(
                   <p className="wd-dashboard-course-title card-text overflow-y-hidden" style={{ maxHeight: 100 }}>
                     {course.description} </p>
 
-                  {currentUser.role === "FACULTY" && isEnrolled(course._id) && (
+                  {currentUser.role === "FACULTY" && (
                     <>
                       <Link to={`/Kambaz/Courses/${course._id}/Home`}
                         className="wd-dashboard-course-link text-decoration-none text-dark" >
