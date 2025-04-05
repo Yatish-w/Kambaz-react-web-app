@@ -1,25 +1,38 @@
 import axios from "axios";
+
+export const REMOTE_SERVER = import.meta.env.VITE_REMOTE_SERVER;
+export const USERS_API = `${REMOTE_SERVER}/api/users`;
+
 const axiosWithCredentials = axios.create({ 
     withCredentials: true,
     headers: {
         'Content-Type': 'application/json'
-    }
+    },
+    baseURL: REMOTE_SERVER
 });
 
-// Add response interceptor to handle errors
+// Add request interceptor
+axiosWithCredentials.interceptors.request.use(
+    config => {
+        // Ensure credentials are always included
+        config.withCredentials = true;
+        return config;
+    },
+    error => {
+        return Promise.reject(error);
+    }
+);
+
+// Add response interceptor
 axiosWithCredentials.interceptors.response.use(
     response => response,
     error => {
         if (error.response?.status === 401) {
-            // Handle unauthorized error
             console.log("Unauthorized access");
         }
         return Promise.reject(error);
     }
 );
-
-export const REMOTE_SERVER = import.meta.env.VITE_REMOTE_SERVER;
-export const USERS_API = `${REMOTE_SERVER}/api/users`;
 
 export const createCourse = async (course: any) => {
     const { data } = await axiosWithCredentials.post(`${USERS_API}/current/courses`, course);
