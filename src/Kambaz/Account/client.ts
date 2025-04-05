@@ -1,5 +1,10 @@
 import axios from "axios";
-const axiosWithCredentials = axios.create({ withCredentials: true });
+const axiosWithCredentials = axios.create({ 
+    withCredentials: true,
+    headers: {
+        'Content-Type': 'application/json'
+    }
+});
 export const REMOTE_SERVER = import.meta.env.VITE_REMOTE_SERVER;
 export const USERS_API = `${REMOTE_SERVER}/api/users`;
 
