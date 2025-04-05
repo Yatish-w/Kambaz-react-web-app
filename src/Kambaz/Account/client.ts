@@ -2,8 +2,7 @@ import axios from "axios";
 const axiosWithCredentials = axios.create({ 
     withCredentials: true,
     headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': 'https://a5--kambaz-react-web-app-yw.netlify.app'
+        'Content-Type': 'application/json'
     }
 });
 export const REMOTE_SERVER = import.meta.env.VITE_REMOTE_SERVER;
