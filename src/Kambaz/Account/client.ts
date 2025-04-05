@@ -6,11 +6,17 @@ const axiosWithCredentials = axios.create({
     }
 });
 
-// Add request interceptor to handle CORS
-axiosWithCredentials.interceptors.request.use((config) => {
-    config.headers['Origin'] = window.location.origin;
-    return config;
-});
+// Add response interceptor to handle errors
+axiosWithCredentials.interceptors.response.use(
+    response => response,
+    error => {
+        if (error.response?.status === 401) {
+            // Handle unauthorized error
+            console.log("Unauthorized access");
+        }
+        return Promise.reject(error);
+    }
+);
 
 export const REMOTE_SERVER = import.meta.env.VITE_REMOTE_SERVER;
 export const USERS_API = `${REMOTE_SERVER}/api/users`;
