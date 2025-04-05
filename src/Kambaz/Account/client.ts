@@ -2,9 +2,17 @@ import axios from "axios";
 const axiosWithCredentials = axios.create({ 
     withCredentials: true,
     headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
     }
 });
+
+// Add request interceptor to handle CORS
+axiosWithCredentials.interceptors.request.use((config) => {
+    config.headers['Origin'] = window.location.origin;
+    return config;
+});
+
 export const REMOTE_SERVER = import.meta.env.VITE_REMOTE_SERVER;
 export const USERS_API = `${REMOTE_SERVER}/api/users`;
 
