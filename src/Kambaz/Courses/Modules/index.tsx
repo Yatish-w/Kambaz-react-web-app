@@ -15,6 +15,7 @@ import * as coursesClient from "../client";
 import * as modulesClient from "./client";
 
 export default function Modules() {
+  const { currentUser } = useSelector((state: any) => state.accountReducer);
   const { cid } = useParams();
   const [moduleName, setModuleName] = useState("");
 
@@ -44,7 +45,8 @@ export default function Modules() {
 
   return (
     <div className="me-4">
-      <ModulesControls setModuleName={setModuleName} moduleName={moduleName} addModule={createModuleForCourse} /><br /><br /><br /><br />
+      {currentUser.role=='FACULTY' ?
+      <ModulesControls setModuleName={setModuleName} moduleName={moduleName} addModule={createModuleForCourse} />:""}<br /><br /><br /><br />
       <ul id="wd-modules" className="list-group rounded-0">
         {modules
           .map((module: any) => (
@@ -64,9 +66,10 @@ export default function Modules() {
                     }}
                     defaultValue={module.name} />
                 )}
+                {currentUser.role=='FACULTY' ?
                 <ModuleControlButtons moduleId={module._id}
                   deleteModule={(moduleId) => removeModule(moduleId)}
-                  editModule={(moduleId) => dispatch(editModule(moduleId))} />
+                  editModule={(moduleId) => dispatch(editModule(moduleId))} />:""}
               </div>
               {module.lessons && (
                 <ul className="wd-lessons list-group rounded-0">

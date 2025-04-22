@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setAssignment, deleteAssignment, setAssignments } from "./reducer";
 import * as assignmentClient from "./client";
 export default function Assignments() {
+  const { currentUser } = useSelector((state: any) => state.accountReducer);
   const { cid } = useParams();
   const intialAssignment = {
     title: "New Assignment Title",
@@ -38,7 +39,8 @@ export default function Assignments() {
 
   return (
     <div className="me-4">
-      <AssignmentControls setAssignment={() => dispatch(setAssignment(intialAssignment))} /><br /><br /><br /><br />
+      {currentUser.role=='FACULTY' ?
+      <AssignmentControls setAssignment={() => dispatch(setAssignment(intialAssignment))} />:""}<br /><br /><br /><br />
       <ul id="wd-modules" className="list-group rounded-0">
         <li className="wd-module list-group-item p-0 mb-5 fs-5 border-gray">
           <div className="wd-title p-3 ps-2 bg-secondary">
@@ -55,13 +57,15 @@ export default function Assignments() {
                   <MdOutlineAssignment className="me-2 fs-3" color="green" />
                 </div>
                 <div className="position-absolute top-50 start-50 translate-middle w-75">
+                  {currentUser.role=='FACULTY' ?
                   <Link className="wd-assignment-link text-black link-underline link-underline-opacity-0"
                     to={`./${assignment._id}`} onClick={() => dispatch(setAssignment(assignment))}>
                     {assignment.title}
-                  </Link>
+                  </Link>: <>{assignment.title}</>}
                   <p><text className="text-danger">Multiple Modules</text> | <b>Not Available until</b> {assignment.unlock.split("T")[0]} at {assignment.unlock.split("T")[1]} | <b>Due</b> {assignment.due.split("T")[0]} at {assignment.due.split("T")[1]} | {assignment.points} pts</p>
                 </div>
                 <div className="position-absolute top-50 end-0 translate-middle-y">
+                  {currentUser.role=='FACULTY' ?
                   <FaTrash className="text-danger me-2" onClick={(e) => {
                     e.preventDefault();
 
@@ -71,7 +75,7 @@ export default function Assignments() {
                     if (confirmDelete) {
                       removeAssignment(assignment._id);
                     }
-                  }} />
+                  }} />:""}
                   <DescControlButtons />
                 </div>
                 <br /><br /><br />

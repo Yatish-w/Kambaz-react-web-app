@@ -1,0 +1,18 @@
+.nav-tabs .nav-item .nav-link {
+    color: #cd0e0e;
+  }
+
+.nav-tabs .nav-item .nav-link.active {
+    color: black;
+}
+
+.large-modal-dialog {
+  max-width: 80%; /* Adjust the width as needed */
+  width: 80%; /* Ensure the modal takes 80% of the viewport width */
+}
+
+@media (min-width: 768px) {
+  .large-modal-dialog {
+    max-width: 80%; /* Adjust the width as needed for larger screens */
+  }
+}
