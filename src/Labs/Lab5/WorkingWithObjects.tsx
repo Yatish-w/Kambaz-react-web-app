@@ -1,6 +1,5 @@
-import { useState } from "react";
-// import React from "react";
-const REMOTE_SERVER = import.meta.env.VITE_REMOTE_SERVER;
+import React, { useState } from "react";
+const REMOTE_SERVER = process.env.REACT_APP_REMOTE_SERVER;
 export default function WorkingWithObjects() {
     const [assignment, setAssignment] = useState({
         id: 1, title: "NodeJS Assignment",
@@ -35,23 +34,24 @@ export default function WorkingWithObjects() {
                 Update Title
             </a>
             <input className="form-control w-75" id="wd-assignment-title"
-                defaultValue={assignment.title} onChange={(event) =>
-                    setAssignment({ ...assignment, title: event.target.value })} /><br />
+                defaultValue={assignment.title} onChange={(e) =>
+                    setAssignment({ ...assignment, title: e.target.value })} /><br />
             <a id="wd-update-assignment-score"
                 className="btn btn-primary float-end"
                 href={`${ASSIGNMENT_API_URL}/score/${assignment.score}`}>
                 Update Score
             </a>
             <input type="number" className="form-control w-75" id="wd-assignment-score"
-                defaultValue={assignment.score} onChange={(event) =>
-                    setAssignment({ ...assignment, score: event.target.valueAsNumber })} /><br />
+                defaultValue={assignment.score} onChange={(e) =>
+                    setAssignment({ ...assignment, score: e.target.valueAsNumber })} /><br />
             <a id="wd-assignment-completed"
                 className="btn btn-primary float-end"
                 href={`${ASSIGNMENT_API_URL}/completed/${assignment.completed}`}>
                 Update Completed Status
             </a>
             <input type="checkbox" className="form-check-input" id="wd-assignment-completed"
-                onChange={() => setAssignment({ ...assignment, completed: !(assignment.completed) })} />
+                onChange={(e) =>
+                    setAssignment({ ...assignment, completed: !(assignment.completed) })} />
             <label htmlFor="wd-assignment-completed" className="form-check-label ms-4">{assignment.completed ? "True" : "False"}</label>
             <br/><br/><hr />
 
@@ -72,16 +72,16 @@ export default function WorkingWithObjects() {
                 Update Name
             </a>
             <input className="form-control w-75" id="wd-module-name"
-                defaultValue={module.name} onChange={(event) =>
-                    setModule({ ...module, name: event.target.value })} /><br />
+                defaultValue={module.name} onChange={(e) =>
+                    setModule({ ...module, name: e.target.value })} /><br />
             <a id="wd-update-module-desc"
                 className="btn btn-primary float-end"
                 href={`${MODULE_API_URL}/description/${module.description}`}>
                 Update Description
             </a>
             <input className="form-control w-75" id="wd-module-desc"
-                defaultValue={module.description} onChange={(event) =>
-                    setModule({ ...module, description: event.target.value })} />
+                defaultValue={module.description} onChange={(e) =>
+                    setModule({ ...module, description: e.target.value })} />
             <hr />
         </div>
     );

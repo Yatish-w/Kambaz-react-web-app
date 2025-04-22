@@ -1,10 +1,12 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import * as client from "./client";
 import { useDispatch } from "react-redux";
 import { setCurrentUser } from "./reducer";
 export default function Signup() {
   const [user, setUser] = useState<any>({
+    _id: Date.now().toString(),
+    section: "S101",
     role: "STUDENT",
   });
   const navigate = useNavigate();

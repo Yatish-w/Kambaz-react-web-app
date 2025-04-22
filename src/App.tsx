@@ -1,3 +1,6 @@
+import React from 'react';
+//import logo from './logo.svg';
+//import './App.css';
 import Labs from './Labs';
 import Kambaz from './Kambaz';
 import LandingPage from './LandingPage';
@@ -7,18 +10,18 @@ import { Provider } from "react-redux";
 
 function App() {
   return (
-    <Provider store={store}>
-      <HashRouter>
+    <HashRouter>
+      <Provider store={store}>
         <div>
           <Routes>
-            <Route path="/" element={<Navigate to="LandingPage"/>}/>
-            <Route path='/Labs/*' element={<Labs/>} />
+            <Route path="/" element={<Navigate to="LandingPage" />} />
+            <Route path='/Labs/*' element={<Labs />} />
             <Route path="/Kambaz/*" element={<Kambaz />} />
-            <Route path='/LandingPage' element={<LandingPage/>} />
+            <Route path='/LandingPage' element={<LandingPage />} />
           </Routes>
         </div>
-      </HashRouter>
-    </Provider>
+      </Provider>
+    </HashRouter>
   );
 }
 

@@ -1,4 +1,4 @@
-import { useDispatch} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { deleteTodo, setTodo } from "./todosReducer";
 
 export default function TodoItem({ todo }: {
