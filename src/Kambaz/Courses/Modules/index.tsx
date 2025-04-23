@@ -2,12 +2,10 @@ import ModulesControls from "./ModulesControls";
 import "../../styles.css";
 import LessonControlButtons from "./LessonControlButtons";
 import { BsGripVertical } from "react-icons/bs";
-import { GrLink } from "react-icons/gr";
-import { FiExternalLink } from "react-icons/fi";
 import ModuleControlButtons from "./ModuleControlButtons";
 import { useParams } from "react-router";
 //import * as db from "../../Database";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { addModule, editModule, updateModule, deleteModule, setModules }
   from "./reducer";
 import { useSelector, useDispatch } from "react-redux";
@@ -45,7 +43,7 @@ export default function Modules() {
 
   return (
     <div className="me-4">
-      {currentUser.role=='FACULTY' ?
+      {currentUser.role==='FACULTY' ?
       <ModulesControls setModuleName={setModuleName} moduleName={moduleName} addModule={createModuleForCourse} />:""}<br /><br /><br /><br />
       <ul id="wd-modules" className="list-group rounded-0">
         {modules
@@ -66,7 +64,7 @@ export default function Modules() {
                     }}
                     defaultValue={module.name} />
                 )}
-                {currentUser.role=='FACULTY' ?
+                {currentUser.role==='FACULTY' ?
                 <ModuleControlButtons moduleId={module._id}
                   deleteModule={(moduleId) => removeModule(moduleId)}
                   editModule={(moduleId) => dispatch(editModule(moduleId))} />:""}

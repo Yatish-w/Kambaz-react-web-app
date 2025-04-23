@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useEffect } from "react";
 import "../../styles.css";
 import { BsGripVertical } from "react-icons/bs";
 import { MdOutlineAssignment } from "react-icons/md";
@@ -39,7 +39,7 @@ export default function Assignments() {
 
   return (
     <div className="me-4">
-      {currentUser.role=='FACULTY' ?
+      {currentUser.role==='FACULTY' ?
       <AssignmentControls setAssignment={() => dispatch(setAssignment(intialAssignment))} />:""}<br /><br /><br /><br />
       <ul id="wd-modules" className="list-group rounded-0">
         <li className="wd-module list-group-item p-0 mb-5 fs-5 border-gray">
@@ -57,7 +57,7 @@ export default function Assignments() {
                   <MdOutlineAssignment className="me-2 fs-3" color="green" />
                 </div>
                 <div className="position-absolute top-50 start-50 translate-middle w-75">
-                  {currentUser.role=='FACULTY' ?
+                  {currentUser.role==='FACULTY' ?
                   <Link className="wd-assignment-link text-black link-underline link-underline-opacity-0"
                     to={`./${assignment._id}`} onClick={() => dispatch(setAssignment(assignment))}>
                     {assignment.title}
@@ -65,7 +65,7 @@ export default function Assignments() {
                   <p><text className="text-danger">Multiple Modules</text> | <b>Not Available until</b> {assignment.unlock.split("T")[0]} at {assignment.unlock.split("T")[1]} | <b>Due</b> {assignment.due.split("T")[0]} at {assignment.due.split("T")[1]} | {assignment.points} pts</p>
                 </div>
                 <div className="position-absolute top-50 end-0 translate-middle-y">
-                  {currentUser.role=='FACULTY' ?
+                  {currentUser.role==='FACULTY' ?
                   <FaTrash className="text-danger me-2" onClick={(e) => {
                     e.preventDefault();
 

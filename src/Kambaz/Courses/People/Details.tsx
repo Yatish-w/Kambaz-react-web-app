@@ -4,7 +4,6 @@ import { IoCloseSharp } from "react-icons/io5";
 import { useParams, useNavigate } from "react-router";
 import { FaPencil } from "react-icons/fa6";
 import { FaCheck } from "react-icons/fa";
-import { Link } from "react-router-dom";
 import * as client from "../../Account/client";
 export default function PeopleDetails() {
     const { uid } = useParams();

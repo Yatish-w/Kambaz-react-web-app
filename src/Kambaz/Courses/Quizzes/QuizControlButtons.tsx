@@ -2,8 +2,6 @@ import { IoEllipsisVertical } from "react-icons/io5";
 import { FcCancel } from "react-icons/fc";
 import { FaPencil } from "react-icons/fa6";
 import { FaTrash } from "react-icons/fa";
-import { TiArrowSortedDown } from "react-icons/ti";
-import { FaCopy } from "react-icons/fa";
 import GreenCheckmark from "./GreenCheckmark";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
