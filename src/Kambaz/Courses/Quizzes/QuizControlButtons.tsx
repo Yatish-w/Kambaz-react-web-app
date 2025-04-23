@@ -6,11 +6,9 @@ import GreenCheckmark from "./GreenCheckmark";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { deleteQuiz, updateQuiz } from "./quizzesReducer";
-import { useState } from "react";
 import * as client from "./client";
 
 export default function QuizControlButtons({quiz} : {quiz: any}) {
-  const [stat, setStat] = useState(null);
   const dispatch = useDispatch();
 
   const removeQuiz = async (quizId: string) => {
@@ -18,8 +16,7 @@ export default function QuizControlButtons({quiz} : {quiz: any}) {
     dispatch(deleteQuiz(quizId));
   };
   const saveQuiz = async (quiz: any) => {
-    const status = await client.updateQuiz(quiz);
-    setStat(status);
+    await client.updateQuiz(quiz);
     dispatch(updateQuiz(quiz));
   };
   return (

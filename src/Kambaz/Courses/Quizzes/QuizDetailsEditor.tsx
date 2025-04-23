@@ -20,24 +20,27 @@ export default function QuizDetailsEditor () {
         dispatch(addQuiz(newQuiz));
     }; 
     const saveQuiz = async (quiz: any) => {
-        const status = await client.updateQuiz(quiz);
+        await client.updateQuiz(quiz);
         dispatch(updateQuiz(quiz));
     };
     const handleInstructionsChange = (content: string) => {
         setInstructions(content);
         dispatch(setQuiz({ ...updatingQuiz, instructions: content }));
     };
-    const findQuiz = async (cid: string, qid: string) => {
-        const quiz = await client.findQuiz(cid, qid);
-        dispatch(setQuiz(quiz[0]));
-        setCurrentQuiz(quiz[0]);
-        setInstructions(quiz[0].instructions || '');
-        setAllowMultipleAttempts(quiz[0].allowMultipleAttempts);
-        setTimeLimit(quiz[0].timeLimit);
-    }
+    
     useEffect(() => {
+        const findQuiz = async (cid: string, qid: string) => {
+            const quiz = await client.findQuiz(cid, qid);
+            dispatch(setQuiz(quiz[0]));
+            setCurrentQuiz(quiz[0]);
+            setInstructions(quiz[0].instructions || '');
+            setAllowMultipleAttempts(quiz[0].allowMultipleAttempts);
+            setTimeLimit(quiz[0].timeLimit);
+        };
+        
         findQuiz(cid as string, qid as string);
-      }, [cid, qid]);
+    }, [cid, qid, dispatch]);
+    
     return (
         <form className="mt-4">
             <input type="text" className="form-control" id="wd-quiz-name" defaultValue={currentQuiz.title}

@@ -25,7 +25,7 @@ export default function Courses({ courses }: { courses: any[]; }) {
   const { uid } = useParams();
   useEffect(() => {
     fetchUsers(cid);
-  }, [uid]);
+  }, [uid, cid]);
   return (
     <div id="wd-courses">
       <h2 className="text-danger">

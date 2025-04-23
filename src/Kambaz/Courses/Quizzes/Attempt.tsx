@@ -14,21 +14,25 @@ export default function Attempt() {
     function createMarkup(html: any) {
         return { __html: DOMPurify.sanitize(html) };
     };
-    const findQuiz = async (cid: string, qid: string) => {
-        const quiz = await client.findQuiz(cid, qid);
-        setQuiz(quiz[0]);
-    };
-    const findAttempt = async (attemptNo: string) => {
-        const number = Number(attemptNo) - 1;
-        const userAttempt = currentUser.quizAttempts.filter((qa: any) => qa.course === cid && qa.quiz === qid)[number];
-        let reversedAnswers = userAttempt.answers.slice().reverse();
-        setAnswers(reversedAnswers);
-    };
+    
     useEffect(() => {
+        const findQuiz = async (cid: string, qid: string) => {
+            const quiz = await client.findQuiz(cid, qid);
+            setQuiz(quiz[0]);
+        };
+        
+        const findAttempt = async (attemptNo: string) => {
+            const number = Number(attemptNo) - 1;
+            const userAttempt = currentUser.quizAttempts.filter((qa: any) => qa.course === cid && qa.quiz === qid)[number];
+            let reversedAnswers = userAttempt.answers.slice().reverse();
+            setAnswers(reversedAnswers);
+        };
+        
         findQuiz(cid as string, qid as string);
         findAttempt(attemptNumber as string);
-      }, []);
-      return (
+    }, [cid, qid, attemptNumber, currentUser]);
+    
+    return (
         <div>
             <h1>Attempt {attemptNumber}</h1>
             {quiz.questions && (

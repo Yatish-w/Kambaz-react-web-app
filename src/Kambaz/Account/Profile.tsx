@@ -12,16 +12,22 @@ export default function Profile() {
     const updatedProfile = await client.updateUser(profile);
     dispatch(setCurrentUser(updatedProfile));
   };
-  const fetchProfile = () => {
-    if (!currentUser) return navigate("/Kambaz/Account/Signin");
-    setProfile(currentUser);
-  };
+  
   const signout = async () => {
     await client.signout();
     dispatch(setCurrentUser(null));
     navigate("/Kambaz/Account/Signin");
   };
-  useEffect(() => { fetchProfile(); }, []);
+  
+  useEffect(() => { 
+    const fetchProfile = () => {
+      if (!currentUser) return navigate("/Kambaz/Account/Signin");
+      setProfile(currentUser);
+    };
+    
+    fetchProfile(); 
+  }, [navigate, currentUser]);
+  
   return (
     <div className="wd-profile-screen">
       <h3>Profile</h3>

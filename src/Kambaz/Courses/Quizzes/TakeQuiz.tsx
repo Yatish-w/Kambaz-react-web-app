@@ -61,13 +61,16 @@ export default function TakeQuiz () {
         setGraded(true);
         updateUser(userPoints);
     };
-    const findQuiz = async (cid: string, qid: string) => {
-        const quiz = await quizzesClient.findQuiz(cid, qid);
-        dispatch(setQuiz(quiz[0]));
-    };
+    
     useEffect(() => {
+        const findQuiz = async (cid: string, qid: string) => {
+            const quiz = await quizzesClient.findQuiz(cid, qid);
+            dispatch(setQuiz(quiz[0]));
+        };
+        
         findQuiz(cid as string, qid as string);
-      }, []);
+    }, [cid, qid, dispatch]);
+    
     return (
         <div className="mb-2">
             <div>

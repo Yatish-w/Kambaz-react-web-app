@@ -19,7 +19,7 @@ export default function QuizEditor() {
             dispatch(setQuiz(toEdit));
             setQuizState(toEdit);
         };
-      }, [cid, qid]);
+      }, [cid, qid, dispatch, quizzes]);
 
     if (!quiz) return null;
     return (

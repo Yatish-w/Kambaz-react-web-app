@@ -4,7 +4,7 @@ import { BsGripVertical } from "react-icons/bs";
 import { IoRocketOutline } from "react-icons/io5";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { setQuizzes, updateQuiz, updateNewQuiz } from "./quizzesReducer";
 import * as client from "./client";
 
@@ -13,22 +13,31 @@ export default function Quizzes() {
     const { quizzes, newQuiz } = useSelector((state: any) => state.quizzesReducer);
     const { currentUser } = useSelector((state: any) => state.accountReducer);
     const dispatch = useDispatch();
+    const initializedRef = useRef(false);
 
-    const fetchQuizzes = async () => {
-        const quizzes = await client.findQuizzesForCourse(cid as string);
-        dispatch(setQuizzes(quizzes));
-      };
-    const saveQuiz = async (quiz: any) => {
-        const status = await client.updateQuiz(quiz);
-        dispatch(updateQuiz(quiz));
-    };
     useEffect(() => {
+        const fetchQuizzes = async () => {
+            const quizzes = await client.findQuizzesForCourse(cid as string);
+            dispatch(setQuizzes(quizzes));
+        };
         fetchQuizzes();
-      }, [quizzes]);
+    }, [cid, dispatch]);
+    
     useEffect(() => {
-        saveQuiz({...newQuiz, course: cid, title: `Quiz ${quizzes.length}`});
-        dispatch(updateNewQuiz({...newQuiz, course: cid, title: `Quiz ${quizzes.length}`}));
-    }, []);
+        if (initializedRef.current) return;
+        
+        const saveQuiz = async (quiz: any) => {
+            await client.updateQuiz(quiz);
+            dispatch(updateQuiz(quiz));
+        };
+        
+        if (newQuiz && cid) {
+            saveQuiz({...newQuiz, course: cid, title: `Quiz ${quizzes.length}`});
+            dispatch(updateNewQuiz({...newQuiz, course: cid, title: `Quiz ${quizzes.length}`}));
+            initializedRef.current = true;
+        }
+    }, [cid, dispatch, newQuiz, quizzes.length]);
+    
     return (
         <div id="wd-quizzes" className="ms-1 me-1">
             <QuizzesControls qid={newQuiz._id} cid={cid} />

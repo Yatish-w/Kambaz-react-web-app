@@ -24,13 +24,14 @@ export default function Assignments() {
   const { assignments } = useSelector((state: any) => state.assignmentReducer);
   //const { assignment } = useSelector((state: any) => state.assignmentReducer);
   const dispatch = useDispatch();
-  const fetchAllAssignments = async () => {
-    const modules = await assignmentClient.fetchAssignmentsForCourse(cid as string);
-    dispatch(setAssignments(modules));
-  };
+  
   useEffect(() => {
+    const fetchAllAssignments = async () => {
+      const modules = await assignmentClient.fetchAssignmentsForCourse(cid as string);
+      dispatch(setAssignments(modules));
+    };
     fetchAllAssignments();
-  }, []);
+  }, [cid, dispatch]);
 
   const removeAssignment = async (assignmentId: string) => {
     await assignmentClient.deleteAssignment(assignmentId);

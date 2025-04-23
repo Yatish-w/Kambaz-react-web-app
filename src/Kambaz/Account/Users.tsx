@@ -23,7 +23,7 @@ export default function Users() {
     useEffect(() => {
         fetchUsers();
     }, [uid]);
-    const [name, setName] = useState("");
+    const [, setName] = useState("");
     const filterUsersByName = async (name: string) => {
         setName(name);
         if (name) {

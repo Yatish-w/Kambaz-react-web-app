@@ -11,19 +11,22 @@ export default function QuizDetails () {
     const { cid, qid } = useParams();
     const [quiz, setQuiz] = useState<any>({});
     
-    const getUserQuizAttempts = async () => {
-        const attempts = currentUser.quizAttempts.filter((attemptObj: any) => 
-            attemptObj.course === cid && attemptObj.quiz === qid);
-        setUserAttempts(attempts);
-    };
-    const findQuiz = async (cid: string, qid: string) => {
-        const quiz = await client.findQuiz(cid, qid);
-        setQuiz(quiz[0]);
-    };    
     useEffect(() => {
+        const getUserQuizAttempts = async () => {
+            const attempts = currentUser.quizAttempts.filter((attemptObj: any) => 
+                attemptObj.course === cid && attemptObj.quiz === qid);
+            setUserAttempts(attempts);
+        };
+        
+        const findQuiz = async (cid: string, qid: string) => {
+            const quiz = await client.findQuiz(cid, qid);
+            setQuiz(quiz[0]);
+        };
+        
         findQuiz(cid as string, qid as string);
         getUserQuizAttempts();
-      }, []);
+    }, [cid, qid, currentUser]);
+    
     return (
       <div>
         {currentUser.role === "FACULTY" || currentUser.role === "TA" ? 

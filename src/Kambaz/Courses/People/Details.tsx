@@ -13,14 +13,17 @@ export default function PeopleDetails() {
         await client.deleteUser(uid);
         navigate(-1);
     };
-    const fetchUser = async () => {
-        if (!uid) return;
-        const user = await client.findUserById(uid);
-        setUser(user);
-    };
+    
     useEffect(() => {
+        const fetchUser = async () => {
+            if (!uid) return;
+            const user = await client.findUserById(uid);
+            setUser(user);
+        };
+        
         if (uid) fetchUser();
     }, [uid]);
+    
     const [name, setName] = useState("");
     const [editing, setEditing] = useState(false);
     const saveUser = async () => {

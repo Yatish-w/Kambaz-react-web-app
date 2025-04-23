@@ -69,15 +69,18 @@ export default function QuizQuestionsEditor () {
         dispatch(setQuiz({...updatingQuiz, questions: currentQuestions, points: totalPoints}));
         setStatus(true);
     }
-    const findQuiz = async (cid: string, qid: string) => {
-        const quiz = await client.findQuiz(cid, qid);
-        console.log(quiz[0].questions);
-        dispatch(setQuiz(quiz[0]));
-        setCurrentQuestions(quiz[0].questions || []);
-    }
+    
     useEffect(() => {
+        const findQuiz = async (cid: string, qid: string) => {
+            const quiz = await client.findQuiz(cid, qid);
+            console.log(quiz[0].questions);
+            dispatch(setQuiz(quiz[0]));
+            setCurrentQuestions(quiz[0].questions || []);
+        };
+        
         findQuiz(cid as string, qid as string);
-      }, [cid, qid]);
+    }, [cid, qid, dispatch]);
+    
     return (
         <div id="wd-quiz-questions-page" className="text-center">
             {status && 
