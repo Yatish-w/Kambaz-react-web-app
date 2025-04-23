@@ -18,34 +18,59 @@ export default function Kambaz() {
   const [enrolling, setEnrolling] = useState<boolean>(false);
   
   const updateEnrollment = async (courseId: string, enrolled: boolean) => {
-    if (enrolled) {
-      await userClient.enrollIntoCourse(currentUser._id, courseId);
-    } else {
-      await userClient.unenrollFromCourse(currentUser._id, courseId);
+    try {
+      if (!currentUser || !currentUser._id) {
+        console.error("No current user found");
+        return;
+      }
+      
+      if (enrolled) {
+        await userClient.enrollIntoCourse(currentUser._id, courseId);
+      } else {
+        await userClient.unenrollFromCourse(currentUser._id, courseId);
+      }
+      
+      setCourses(
+        courses.map((course) => {
+          if (course._id === courseId) {
+            return { ...course, enrolled: enrolled };
+          } else {
+            return course;
+          }
+        })
+      );
+    } catch (error) {
+      console.error("Error updating enrollment:", error);
     }
-    setCourses(
-      courses.map((course) => {
-        if (course._id === courseId) {
-          return { ...course, enrolled: enrolled };
-        } else {
-          return course;
-        }
-      })
-    );
   };
   
   useEffect(() => {
     const findCoursesForUser = async () => {
       try {
+        // Check if user is logged in
+        if (!currentUser || !currentUser._id) {
+          console.log("No current user found, not fetching courses");
+          setCourses([]);
+          return;
+        }
+        
         const courses = await userClient.findCoursesForUser(currentUser._id);
         setCourses(courses);
       } catch (error) {
-        console.error(error);
+        console.error("Error finding courses:", error);
+        setCourses([]);
       }
     };
     
     const fetchCourses = async () => {
       try {
+        // Check if user is logged in
+        if (!currentUser || !currentUser._id) {
+          console.log("No current user found, not fetching courses");
+          setCourses([]);
+          return;
+        }
+        
         const allCourses = await courseClient.fetchAllCourses();
         const enrolledCourses = await userClient.findCoursesForUser(
           currentUser._id
@@ -59,7 +84,8 @@ export default function Kambaz() {
         });
         setCourses(courses);
       } catch (error) {
-        console.error(error);
+        console.error("Error fetching courses:", error);
+        setCourses([]);
       }
     };
     
