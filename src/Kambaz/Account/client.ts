@@ -1,27 +1,60 @@
 import axios from "axios";
-const axiosWithCredentials = axios.create({ 
-    withCredentials: true,
-    headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Credentials": "true"
-    }
-});
+
+// Define base URL
 export const REMOTE_SERVER = process.env.REACT_APP_REMOTE_SERVER || 'https://kambaz-node-server-app-y1ij.onrender.com';
 export const USERS_API = `${REMOTE_SERVER}/api/users`;
 
+// Create axios instance with proper configuration
+const axiosWithCredentials = axios.create({ 
+    baseURL: REMOTE_SERVER,
+    withCredentials: true,
+    headers: {
+        "Content-Type": "application/json"
+    }
+});
+
+// Add interceptor to handle errors consistently
+axiosWithCredentials.interceptors.response.use(
+    response => response,
+    error => {
+        console.error('API Error:', error.message);
+        if (error.response) {
+            console.error('Status:', error.response.status);
+            console.error('Data:', error.response.data);
+        }
+        return Promise.reject(error);
+    }
+);
+
 export const enrollIntoCourse = async (userId: string, courseId: string) => {
-    const response = await axiosWithCredentials.post(`${USERS_API}/${userId}/courses/${courseId}`);
-    return response.data;
+    try {
+        const response = await axiosWithCredentials.post(`/api/users/${userId}/courses/${courseId}`);
+        return response.data;
+    } catch (error) {
+        console.error("Error enrolling into course:", error);
+        throw error;
+    }
 };
 
 export const unenrollFromCourse = async (userId: string, courseId: string) => {
-    const response = await axiosWithCredentials.delete(`${USERS_API}/${userId}/courses/${courseId}`);
-    return response.data;
+    try {
+        const response = await axiosWithCredentials.delete(`/api/users/${userId}/courses/${courseId}`);
+        return response.data;
+    } catch (error) {
+        console.error("Error unenrolling from course:", error);
+        throw error;
+    }
 };
 
+// Only modify these first few functions to keep the edit manageable
 export const findCoursesForUser = async (userId: string) => {
-    const response = await axiosWithCredentials.get(`${USERS_API}/${userId}/courses`);
-    return response.data;
+    try {
+        const response = await axiosWithCredentials.get(`/api/users/${userId}/courses`);
+        return response.data;
+    } catch (error) {
+        console.error("Error finding courses for user:", error);
+        return [];
+    }
 };
 
 export const createUser = async (user: any) => {
@@ -66,8 +99,13 @@ export const findMyCourses = async () => {
 };
 
 export const signin = async (credentials: any) => {
-    const response = await axiosWithCredentials.post(`${USERS_API}/signin`, credentials);
-    return response.data;
+    try {
+        const response = await axiosWithCredentials.post(`/api/users/signin`, credentials);
+        return response.data;
+    } catch (error) {
+        console.error("Signin error:", error);
+        return null;
+    }
 };
 
 export const signup = async (user: any) => {
@@ -82,10 +120,10 @@ export const updateUser = async (user: any) => {
 
 export const profile = async () => {
     try {
-        const response = await axiosWithCredentials.post(`${USERS_API}/profile`);
+        const response = await axiosWithCredentials.post(`/api/users/profile`);
         return response.data;
     } catch (error) {
-        console.log("Profile fetch error:", error);
+        console.error("Profile fetch error:", error);
         return null;
     }
 };

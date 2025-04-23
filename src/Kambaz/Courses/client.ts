@@ -1,31 +1,48 @@
 import axios from "axios";
-const axiosWithCredentials = axios.create({ 
-    withCredentials: true,
-    headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Credentials": "true"
-    }
-});
+
+// Define base URL
 const REMOTE_SERVER = process.env.REACT_APP_REMOTE_SERVER || 'https://kambaz-node-server-app-y1ij.onrender.com';
 const COURSES_API = `${REMOTE_SERVER}/api/courses`;
 
+// Create axios instance with proper configuration
+const axiosWithCredentials = axios.create({ 
+    baseURL: REMOTE_SERVER,
+    withCredentials: true,
+    headers: {
+        "Content-Type": "application/json"
+    }
+});
+
+// Add interceptor to handle errors consistently
+axiosWithCredentials.interceptors.response.use(
+    response => response,
+    error => {
+        console.error('API Error:', error.message);
+        if (error.response) {
+            console.error('Status:', error.response.status);
+            console.error('Data:', error.response.data);
+        }
+        return Promise.reject(error);
+    }
+);
+
 export const findUsersForCourse = async (courseId: any) => {
     try {
-        const response = await axiosWithCredentials.get(`${COURSES_API}/${courseId}/users`);
+        const response = await axiosWithCredentials.get(`/api/courses/${courseId}/users`);
         return response.data;
     } catch (error) {
-        console.log("Error fetching users for course:", error);
+        console.error("Error fetching users for course:", error);
         return [];
     }
 };
 
 export const createCourse = async (course: any) => {
     try {
-        const { data } = await axiosWithCredentials.post(COURSES_API, course);
+        const { data } = await axiosWithCredentials.post('/api/courses', course);
         return data;
     } catch (error) {
-        console.log("Error creating course:", error);
-        throw error;
+        console.error("Error creating course:", error);
+        return null;
     }
 };
 
