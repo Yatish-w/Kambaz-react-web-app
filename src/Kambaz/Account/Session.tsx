@@ -12,9 +12,12 @@ export default function Session({ children }: { children: any }) {
                 const currentUser = await client.profile();
                 dispatch(setCurrentUser(currentUser));
             } catch (err: any) {
-                console.error(err);
+                console.error("Authentication error:", err.message);
+                // On error, set current user to null
+                dispatch(setCurrentUser(null));
+            } finally {
+                setPending(false);
             }
-            setPending(false);
         };
         
         fetchProfile();
@@ -23,4 +26,7 @@ export default function Session({ children }: { children: any }) {
     if (!pending) {
         return children;
     }
+    
+    // Optional: Show a loading indicator while checking auth
+    return <div>Loading...</div>;
 }

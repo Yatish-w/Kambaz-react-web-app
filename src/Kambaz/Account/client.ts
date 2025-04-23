@@ -1,6 +1,11 @@
 import axios from "axios";
-const axiosWithCredentials = axios.create({ withCredentials: true });
-export const REMOTE_SERVER = process.env.REACT_APP_REMOTE_SERVER;
+const axiosWithCredentials = axios.create({ 
+    withCredentials: true,
+    headers: {
+        "Content-Type": "application/json"
+    }
+});
+export const REMOTE_SERVER = process.env.REACT_APP_REMOTE_SERVER || 'https://kambaz-node-server-app-y1ij.onrender.com';
 export const USERS_API = `${REMOTE_SERVER}/api/users`;
 
 export const enrollIntoCourse = async (userId: string, courseId: string) => {
@@ -75,8 +80,13 @@ export const updateUser = async (user: any) => {
 };
 
 export const profile = async () => {
-    const response = await axiosWithCredentials.post(`${USERS_API}/profile`);
-    return response.data;
+    try {
+        const response = await axiosWithCredentials.post(`${USERS_API}/profile`);
+        return response.data;
+    } catch (error) {
+        console.log("Profile fetch error:", error);
+        return null;
+    }
 };
 
 export const signout = async () => {
