@@ -2,7 +2,8 @@ import axios from "axios";
 const axiosWithCredentials = axios.create({ 
     withCredentials: true,
     headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Credentials": "true"
     }
 });
 const REMOTE_SERVER = process.env.REACT_APP_REMOTE_SERVER || 'https://kambaz-node-server-app-y1ij.onrender.com';
