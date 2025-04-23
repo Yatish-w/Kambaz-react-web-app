@@ -21,16 +21,21 @@ export default function Signin() {
     setLoading(true);
     
     try {
+      console.log("Attempting to sign in with:", credentials.username);
       const user = await client.signin(credentials);
+      console.log("Sign in response:", user ? "Success" : "Failed");
+      
       if (!user) {
         setError("Login failed. Please check your credentials.");
         return;
       }
+      
+      console.log("User authenticated successfully");
       dispatch(setCurrentUser(user));
       navigate("/Kambaz/Dashboard");
     } catch (err) {
-      setError("Network error. Please try again later.");
       console.error("Signin error:", err);
+      setError("Network error. Please try again later.");
     } finally {
       setLoading(false);
     }

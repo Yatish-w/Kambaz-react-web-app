@@ -120,7 +120,7 @@ export const updateUser = async (user: any) => {
 
 export const profile = async () => {
     try {
-        const response = await axiosWithCredentials.post(`/api/users/profile`);
+        const response = await axiosWithCredentials.get(`/api/users/profile`);
         return response.data;
     } catch (error) {
         console.error("Profile fetch error:", error);
